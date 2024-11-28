@@ -1,0 +1,603 @@
+{
+  "IndustryLeaders": [
+    {
+      "name": "Walmart",
+      "link": "https://www.linkedin.com/company/walmart/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Walmart",
+      "favorite": false,
+      "id": "32d5",
+      "category": "IndustryLeaders"
+    },
+    {
+      "name": "BestBuy",
+      "link": "https://www.linkedin.com/company/best-buy/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Best-Buy",
+      "favorite": false,
+      "id": "3315",
+      "category": "IndustryLeaders"
+    },
+    {
+      "name": "Home Depot",
+      "link": "https://www.linkedin.com/company/the-home-depot/jobs/",
+      "indeed": "https://www.indeed.com/cmp/The-Home-Depot",
+      "favorite": false,
+      "id": "9efc"
+    },
+    {
+      "name": "Target",
+      "link": "https://www.linkedin.com/company/target/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Target",
+      "favorite": false,
+      "id": "15bf",
+      "category": "IndustryLeaders"
+    },
+    {
+      "name": "Costco",
+      "link": "https://www.linkedin.com/company/costco-wholesale/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Costco-Wholesale",
+      "favorite": false,
+      "id": "d9bb"
+    },
+    {
+      "name": "United Airlines",
+      "link": "https://www.linkedin.com/company/united-airlines/jobs/",
+      "indeed": "https://www.indeed.com/cmp/United-Airlines",
+      "favorite": false,
+      "id": "fab5"
+    },
+    {
+      "name": "Fedex",
+      "link": "https://www.linkedin.com/company/fedex/jobs/",
+      "indeed": "https://www.indeed.com/cmp/FedEx",
+      "favorite": false,
+      "id": "e6eb"
+    },
+    {
+      "name": "Aflac",
+      "link": "https://www.linkedin.com/company/aflac/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Aflac",
+      "favorite": false,
+      "id": "b71a"
+    },
+    {
+      "name": "GEICO",
+      "link": "https://www.linkedin.com/company/geico/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Geico",
+      "favorite": false,
+      "id": "99ee"
+    },
+    {
+      "name": "Kroger",
+      "link": "https://www.linkedin.com/company/kroger/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Kroger",
+      "favorite": false,
+      "id": "8eaf"
+    },
+    {
+      "name": "Boeing",
+      "link": "https://www.linkedin.com/company/boeing/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Boeing",
+      "favorite": false,
+      "id": "33cb"
+    },
+    {
+      "name": "Tesla",
+      "link": "https://www.linkedin.com/company/tesla-motors/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Tesla",
+      "favorite": false,
+      "id": "4cd8"
+    },
+    {
+      "name": "The RealReal",
+      "link": "https://www.linkedin.com/company/the-realreal/jobs/",
+      "indeed": "https://www.indeed.com/cmp/The-Realreal",
+      "favorite": false,
+      "id": "5aa2"
+    }
+  ],
+  "BigTech": [
+    {
+      "name": "Adobe",
+      "link": "https://www.linkedin.com/company/adobe/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Adobe",
+      "favorite": false,
+      "id": "5b53"
+    },
+    {
+      "name": "Microsoft",
+      "link": "https://www.linkedin.com/company/microsoft/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Microsoft",
+      "favorite": false,
+      "id": "157d",
+      "category": "BigTech"
+    },
+    {
+      "name": "Dropbox",
+      "link": "https://www.linkedin.com/company/dropbox/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Dropbox-ab4b15a9",
+      "favorite": false,
+      "id": "b244",
+      "category": "BigTech"
+    },
+    {
+      "name": "Meta",
+      "link": "https://www.linkedin.com/company/meta/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Meta-dd1502f2",
+      "favorite": false,
+      "id": "8bdb"
+    },
+    {
+      "name": "Google",
+      "link": "https://www.linkedin.com/company/google/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Google",
+      "favorite": false,
+      "id": "084f"
+    },
+    {
+      "name": "Apple",
+      "link": "https://www.linkedin.com/company/apple/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Apple",
+      "favorite": false,
+      "id": "b922"
+    },
+    {
+      "name": "Airbnb",
+      "link": "https://www.linkedin.com/company/airbnb/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Airbnb",
+      "favorite": false,
+      "id": "43fc"
+    },
+    {
+      "name": "Uber",
+      "link": "https://www.linkedin.com/company/uber-com/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Uber",
+      "favorite": false,
+      "id": "281e"
+    },
+    {
+      "name": "LinkedIn",
+      "link": "https://www.linkedin.com/company/linkedin/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Linkedin",
+      "favorite": false,
+      "id": "7184"
+    },
+    {
+      "name": "Cruise",
+      "link": "https://www.linkedin.com/company/getcruise/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Cruise-fc3bd24b",
+      "favorite": false,
+      "id": "ebb6",
+      "category": "BigTech"
+    },
+    {
+      "name": "NVIDIA",
+      "link": "https://www.linkedin.com/company/nvidia/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Nvidia",
+      "favorite": false,
+      "id": "369a",
+      "category": "BigTech"
+    },
+    {
+      "name": "Snap",
+      "link": "https://www.linkedin.com/company/snap-inc-co/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Snap-Inc.",
+      "favorite": false,
+      "id": "1398"
+    },
+    {
+      "name": "Zillow",
+      "link": "https://www.linkedin.com/company/zillow/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Zillow",
+      "favorite": false,
+      "id": "89cb"
+    },
+    {
+      "name": "X",
+      "link": "https://careers.x.com/",
+      "indeed": "https://www.indeed.com/cmp/Twitter",
+      "favorite": false,
+      "id": "9a5b"
+    }
+  ],
+  "Media": [
+    {
+      "name": "Netflix",
+      "link": "https://www.linkedin.com/company/netflix/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Netflix",
+      "favorite": false,
+      "id": "33ca"
+    },
+    {
+      "name": "Spotify",
+      "link": "https://www.linkedin.com/company/spotify/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Spotify",
+      "favorite": true,
+      "id": "5c08",
+      "category": "Media"
+    },
+    {
+      "name": "SoundCloud",
+      "link": "https://www.linkedin.com/company/soundcloud/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Soundcloud",
+      "favorite": false,
+      "id": "cc09"
+    },
+    {
+      "name": "Walt Disney Company",
+      "link": "https://www.linkedin.com/company/the-walt-disney-company/jobs/",
+      "indeed": "https://www.indeed.com/cmp/The-Walt-Disney-Company",
+      "favorite": false,
+      "id": "ac89",
+      "category": "Media"
+    },
+    {
+      "name": "Warner Bros. Discovery",
+      "link": "https://www.linkedin.com/company/warner-bros-discovery/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Warner-Bros.-Discovery",
+      "favorite": false,
+      "id": "1084"
+    },
+    {
+      "name": "Paramount Global",
+      "link": "https://www.linkedin.com/company/paramount/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Paramount-66ac57f4",
+      "favorite": false,
+      "id": "e13a"
+    }
+  ],
+  "AI": [
+    {
+      "name": "Scale AI",
+      "link": "https://www.linkedin.com/company/scaleai/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Scale-AI",
+      "favorite": false,
+      "id": "c7f6"
+    },
+    {
+      "name": "Anthropic",
+      "link": "https://www.linkedin.com/company/anthropicresearch/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Anthropic",
+      "favorite": false,
+      "id": "a217"
+    },
+    {
+      "name": "OpenAI",
+      "link": "https://www.linkedin.com/company/openai/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Openai",
+      "favorite": false,
+      "id": "cac0"
+    }
+  ],
+  "MarketingSaaS": [
+    {
+      "name": "Figma",
+      "link": "https://www.linkedin.com/company/figma/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Figma",
+      "favorite": false,
+      "id": "fe33"
+    },
+    {
+      "name": "Iterable",
+      "link": "https://www.linkedin.com/company/iterable/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Iterable",
+      "favorite": true,
+      "id": "6ee3"
+    },
+    {
+      "name": "Miro",
+      "link": "https://www.linkedin.com/company/mirohq/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Miro-3b3ebbc2",
+      "favorite": false,
+      "id": "6488",
+      "category": "MarketingSaaS"
+    },
+    {
+      "name": "Mixpanel",
+      "link": "https://www.linkedin.com/company/mixpanel-inc-/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Mixpanel",
+      "favorite": true,
+      "id": "1990"
+    },
+    {
+      "name": "Airtable",
+      "link": "https://www.linkedin.com/company/airtable/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Airtable",
+      "favorite": false,
+      "id": "ae28",
+      "category": "MarketingSaaS"
+    },
+    {
+      "name": "Smartly",
+      "link": "https://www.linkedin.com/company/smartly-io/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Smartly",
+      "favorite": false,
+      "id": "37fa"
+    },
+    {
+      "name": "Canva",
+      "link": "https://www.linkedin.com/company/canva/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Canva",
+      "favorite": false,
+      "id": "9a1f"
+    }
+  ],
+  "Healthcare": [
+    {
+      "name": "Boston Scientific",
+      "link": "https://www.linkedin.com/company/boston-scientific/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Boston-Scientific",
+      "favorite": false,
+      "id": "362e"
+    },
+    {
+      "name": "Amgen",
+      "link": "https://www.linkedin.com/company/amgen/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Amgen",
+      "favorite": false,
+      "id": "b172"
+    },
+    {
+      "name": "Johnson & Johnson",
+      "link": "https://www.linkedin.com/company/johnson-&-johnson/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Johnson-&-Johnson",
+      "favorite": false,
+      "id": "760d",
+      "category": "Healthcare"
+    },
+    {
+      "name": "Pfizer",
+      "link": "https://www.linkedin.com/company/pfizer/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Pfizer",
+      "favorite": false,
+      "id": "c1e4"
+    },
+    {
+      "name": "Roche",
+      "link": "https://www.linkedin.com/company/roche/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Roche",
+      "favorite": false,
+      "id": "f5b6"
+    },
+    {
+      "name": "UnitedHealthcare",
+      "link": "https://www.linkedin.com/company/unitedhealthcare/jobs/",
+      "indeed": "https://www.indeed.com/cmp/UnitedHealthcare",
+      "favorite": false,
+      "id": "6ca3"
+    },
+    {
+      "name": "Philips Healthcare",
+      "link": "https://www.linkedin.com/company/philips/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Philips-Healthcare",
+      "favorite": false,
+      "id": "7da2"
+    },
+    {
+      "name": "Align Technology",
+      "link": "https://www.linkedin.com/company/align-technology/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Align-Technology",
+      "favorite": false,
+      "id": "bcf8"
+    }
+  ],
+  "Fintech": [
+    {
+      "name": "VISA",
+      "link": "https://www.linkedin.com/company/visa/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Visa",
+      "favorite": false,
+      "id": "5ddc"
+    },
+    {
+      "name": "Paypal",
+      "link": "https://www.linkedin.com/company/paypal/jobs/",
+      "indeed": "https://www.indeed.com/cmp/PayPal",
+      "favorite": false,
+      "id": "7f27"
+    },
+    {
+      "name": "Square",
+      "link": "https://www.linkedin.com/company/joinsquare/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Square",
+      "favorite": false,
+      "id": "0363"
+    },
+    {
+      "name": "Robinhood",
+      "link": "https://www.linkedin.com/company/robinhood/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Robinhood",
+      "favorite": false,
+      "id": "2593",
+      "category": "Fintech"
+    },
+    {
+      "name": "Chime",
+      "link": "https://www.linkedin.com/company/chime-card/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Chime-5",
+      "favorite": false,
+      "id": "681b"
+    },
+    {
+      "name": "Stripe",
+      "link": "https://www.linkedin.com/company/stripe/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Stripe",
+      "favorite": false,
+      "id": "5c6d"
+    },
+    {
+      "name": "Plaid",
+      "link": "https://www.linkedin.com/company/plaid-/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Plaid-3",
+      "favorite": false,
+      "id": "67d0"
+    },
+    {
+      "name": "Adyen",
+      "link": "https://www.linkedin.com/company/adyen/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Adyen",
+      "favorite": false,
+      "id": "8b99"
+    },
+    {
+      "name": "Brex",
+      "link": "https://www.linkedin.com/company/brexhq/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Brex-5",
+      "favorite": false,
+      "id": "2ea1"
+    }
+  ],
+  "Finance": [
+    {
+      "name": "Goldman Sachs",
+      "link": "https://www.linkedin.com/company/goldman-sachs/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Goldman-Sachs",
+      "favorite": false,
+      "id": "2d4d"
+    },
+    {
+      "name": "JPMorgan",
+      "link": "https://www.linkedin.com/company/jpmorgan/jobs/",
+      "indeed": "https://www.indeed.com/cmp/JPMorgan",
+      "favorite": false,
+      "id": "1bf5"
+    },
+    {
+      "name": "Citadel",
+      "link": "https://www.linkedin.com/company/citadel-llc/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Citadel-Securities",
+      "favorite": false,
+      "id": "053c"
+    },
+    {
+      "name": "Jane Street",
+      "link": "https://www.linkedin.com/company/jane-street-global/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Jane-Street-4",
+      "favorite": false,
+      "id": "e911",
+      "category": "Finance"
+    },
+    {
+      "name": "Hudson River Trading",
+      "link": "https://www.linkedin.com/company/hudson-river-trading/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Hudson-River-Trading",
+      "favorite": false,
+      "id": "ff3f"
+    },
+    {
+      "name": "Arrowstreet Capital",
+      "link": "https://www.linkedin.com/company/arrowstreet-capital/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Arrowstreet-Capital",
+      "favorite": false,
+      "id": "1e5c"
+    },
+    {
+      "name": "Two Sigma",
+      "link": "https://www.linkedin.com/company/two-sigma-investments/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Two-Sigma",
+      "favorite": false,
+      "id": "6de1"
+    },
+    {
+      "name": "Five Rings",
+      "link": "https://www.linkedin.com/company/fiverings/jobs/",
+      "indeed": "https://fiverings.com/careers/",
+      "favorite": false,
+      "id": "3ab9"
+    },
+    {
+      "name": "Optiver",
+      "link": "https://www.linkedin.com/company/optiver/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Optiver",
+      "favorite": false,
+      "id": "1a79"
+    },
+    {
+      "name": "DRW",
+      "link": "https://www.linkedin.com/company/drw/jobs/",
+      "indeed": "https://www.indeed.com/cmp/DRW",
+      "favorite": false,
+      "id": "9ddf"
+    },
+    {
+      "name": "IMC Trading",
+      "link": "https://www.linkedin.com/company/imc-financial-markets/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Imc-Financial-Markets",
+      "favorite": false,
+      "id": "eda4"
+    }
+  ],
+  "B2BSaaS": [
+    {
+      "name": "Autodesk",
+      "link": "https://www.linkedin.com/company/autodesk/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Autodesk",
+      "favorite": true,
+      "id": "e52e"
+    },
+    {
+      "name": "Databricks",
+      "link": "https://www.linkedin.com/company/databricks/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Databricks",
+      "favorite": true,
+      "id": "90ac"
+    },
+    {
+      "name": "HubSpot",
+      "link": "https://www.linkedin.com/company/hubspot/jobs/",
+      "indeed": "https://www.indeed.com/cmp/HubSpot",
+      "favorite": false,
+      "id": "0118"
+    },
+    {
+      "name": "Okta",
+      "link": "https://www.linkedin.com/company/okta-inc-/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Okta",
+      "favorite": false,
+      "id": "3a47"
+    },
+    {
+      "name": "Salesforce",
+      "link": "https://www.linkedin.com/company/salesforce/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Salesforce",
+      "favorite": false,
+      "id": "73f0"
+    },
+    {
+      "name": "ServiceTitan",
+      "link": "https://www.linkedin.com/company/servicetitan/jobs/",
+      "indeed": "https://www.indeed.com/cmp/ServiceTitan",
+      "favorite": false,
+      "id": "5a3b"
+    },
+    {
+      "name": "Monday.com",
+      "link": "https://www.linkedin.com/company/mondaydotcom/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Monday.com",
+      "favorite": false,
+      "id": "c22f"
+    },
+    {
+      "name": "Gong",
+      "link": "https://www.linkedin.com/company/gong-io/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Gong-7",
+      "favorite": true,
+      "id": "cea1"
+    },
+    {
+      "name": "Toast",
+      "link": "https://www.linkedin.com/company/toast-inc/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Toast,-Inc",
+      "favorite": false,
+      "id": "c988"
+    }
+  ],
+  "Community": [
+    {
+      "id": "fce2",
+      "name": "Amazon",
+      "link": "https://www.linkedin.com/company/amazon/jobs/",
+      "indeed": "https://www.indeed.com/cmp/Amazon.com",
+      "favorite": true
+    }
+  ]
+}
