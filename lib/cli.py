@@ -1,5 +1,3 @@
-# cli.py
-
 from helpers import (
     exit_program,
     list_all_companies,
@@ -9,15 +7,18 @@ from helpers import (
     favorite_company,
     unfavorite_company,
     delete_company,
+    delete_user,
     get_user,
 )
 
 def main():
     user = get_user()
-
     while True:
+        if user is None:
+            user = get_user()
+
         menu(user)
-        choice = input("> ")
+        choice = input("> ").strip()
         if choice == "0":
             exit_program()
         elif choice == "1":
@@ -36,6 +37,8 @@ def main():
             delete_company()
         elif choice == "8":
             user = get_user()
+        elif choice == "9":
+            user = delete_user(user)
         else:
             print("Invalid choice")
 
@@ -51,6 +54,7 @@ def menu(user):
     print("6. Unfavorite a company")
     print("7. Delete a company")
     print("8. Change user")
+    print("9. Delete user")
 
 if __name__ == "__main__":
     main()

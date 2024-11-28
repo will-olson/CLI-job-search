@@ -58,9 +58,25 @@ def fetch_news_for_company(company_name, desired_article_count=5):
 def list_all_companies():
     companies = Company.get_all()
 
-    print("\nAll Companies:")
-    for company in companies:
-        print(f"Name: {company.name}, Category: {company.category}")
+    if not companies:
+        print("\nNo companies available.")
+    else:
+        print("\nAll Companies:")
+        for company in companies:
+            print(f"Name: {company.name}, Category: {company.category}")
+
+def delete_company():
+    company_name = input("Enter the name of the company to delete: ").strip()
+    company = Company.find_by_name(company_name)
+
+    if company:
+        try:
+            company.delete()
+            print(f"Company '{company_name}' deleted.")
+        except Exception as e:
+            print(f"An error occurred while deleting the company: {e}")
+    else:
+        print(f"Company '{company_name}' not found or data error.")
 
 def view_companies_in_category_and_news(category_name):
     category = Category(category_name)
@@ -108,14 +124,31 @@ def view_favorites(user):
             print(f"No recent articles for {company.name}.")
 
 def add_new_company():
-    id = str(uuid.uuid4())[:8]
-    name = input("Enter Name: ")
-    link = input("Enter LinkedIn URL: ")
-    indeed = input("Enter Indeed URL: ")
-    category = input("Enter Category: ")
+    while True:
+        try:
+            id = str(uuid.uuid4())[:8]
+            name = input("Enter Name: ").strip()
+            if not name:
+                raise ValueError("Company name cannot be empty.")
 
-    Company.create(id, name, link, indeed, False, category)
-    print(f"Company '{name}' added successfully.")
+            link = input("Enter LinkedIn URL: ").strip()
+            if link and not link.startswith("https://www.linkedin.com/company/"):
+                raise ValueError("Link must start with 'https://www.linkedin.com/company/'.")
+
+            indeed = input("Enter Indeed URL: ").strip()
+            if indeed and not indeed.startswith("https://www.indeed.com/cmp/"):
+                raise ValueError("Indeed link must start with 'https://www.indeed.com/cmp/'.")
+
+            category = input("Enter Category: ").strip()
+            if not category:
+                raise ValueError("Category cannot be empty.")
+
+            company = Company.create(id, name, link, indeed, False, category)
+            print(f"Company '{company.name}' added successfully.")
+            break
+
+        except ValueError as e:
+            print(f"Error: {e}. Please try again.")
 
 def favorite_company(user):
     company_name = input("Enter the name of the company to favorite: ")
@@ -137,15 +170,22 @@ def unfavorite_company(user):
     else:
         print(f"Company '{company_name}' is not in your favorites.")
 
-def delete_company():
-    company_name = input("Enter the name of the company to delete: ")
-    company = Company.find_by_name(company_name)
+def delete_user(current_user):
+    user_name = input("Enter the name of the user to delete: ").strip()
+    user = User.find_by_name(user_name)
 
-    if company:
-        company.delete()
-        print(f"Company '{company_name}' deleted.")
+    if user:
+        if user_name == current_user.name:
+            if user.confirm_and_delete():
+                print("You have been logged out as your profile was deleted.")
+                return None
+        else:
+            user.delete()
+            print(f"User '{user.name}' deleted.")
     else:
-        print(f"Company '{company_name}' not found.")
+        print(f"User with the name '{user_name}' not found.")
+
+    return current_user
 
 def exit_program():
     print("Goodbye!")
