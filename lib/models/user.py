@@ -1,5 +1,6 @@
 from . import Database
 from .company import Company
+import sqlite3
 
 class User:
     def __init__(self, id=None, name=None):
@@ -20,11 +21,16 @@ class User:
     def create(cls, name):
         conn = Database.connect()
         cursor = conn.cursor()
-        cursor.execute('INSERT INTO users (name) VALUES (?)', (name,))
-        conn.commit()
-        user_id = cursor.lastrowid
-        conn.close()
-        return cls(id=user_id, name=name)
+        try:
+            cursor.execute('INSERT INTO users (name) VALUES (?)', (name,))
+            conn.commit()
+            user_id = cursor.lastrowid
+            conn.close()
+            return cls(id=user_id, name=name)
+        except sqlite3.IntegrityError:
+            conn.close()
+            print("User already exists. Enter a new name.")
+            return None
 
     @classmethod
     def find_by_id(cls, user_id):

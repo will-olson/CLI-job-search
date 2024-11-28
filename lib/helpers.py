@@ -25,7 +25,9 @@ def get_user():
             print(f"Logged in as {user_dict[choice]}.")
             return User.find_by_id(int(choice))
         else:
-            return User.create(choice)
+            new_user = User.create(choice)
+            if new_user:
+                return new_user
 
 def fetch_news_for_company(company_name, desired_article_count=5):
     current_time = time.time()
