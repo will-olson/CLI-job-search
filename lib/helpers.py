@@ -6,6 +6,7 @@ from models.company import Company
 from models.category import Category
 from models.user import User
 import requests
+import time
 
 NEWS_API_KEY = "01376e4cfa834ceabaeac2a7025c77a5"
 
@@ -50,22 +51,54 @@ def create_new_user(name=None):
         print(f"User '{name}' already exists. Please choose a different name.")
         return get_user()
 
-def fetch_news_for_company(company_name):
+news_cache = {}
+CACHE_TTL = 86400
+
+def fetch_news_for_company(company_name, desired_article_count=5):
+    current_time = time.time()
+
+    if company_name in news_cache:
+        cached_data, timestamp = news_cache[company_name]
+        if current_time - timestamp < CACHE_TTL:
+            valid_articles = [article for article in cached_data if article['title'] != '[Removed]']
+            return valid_articles[:desired_article_count]
+
+    
     url = "https://newsapi.org/v2/everything"
     params = {
         "q": company_name,
         "apiKey": NEWS_API_KEY,
         "language": "en",
-        "sortBy": "relevancy"
+        "sortBy": "relevancy",
+        "pageSize": 10
     }
     response = requests.get(url, params=params)
 
     if response.status_code == 200:
         articles = response.json().get('articles', [])
-        return articles
+        news_cache[company_name] = (articles, current_time)
+        valid_articles = [article for article in articles if article['title'] != '[Removed]']
+        return valid_articles[:desired_article_count]
     else:
         print(f"Failed to fetch news for {company_name}: {response.status_code}")
         return []
+
+# def fetch_news_for_company(company_name):
+#     url = "https://newsapi.org/v2/everything"
+#     params = {
+#         "q": company_name,
+#         "apiKey": NEWS_API_KEY,
+#         "language": "en",
+#         "sortBy": "relevancy"
+#     }
+#     response = requests.get(url, params=params)
+
+#     if response.status_code == 200:
+#         articles = response.json().get('articles', [])
+#         return articles
+#     else:
+#         print(f"Failed to fetch news for {company_name}: {response.status_code}")
+#         return []
 
 def list_all_companies():
     conn = connect_db()
@@ -92,7 +125,6 @@ def view_companies_in_category_and_news(category_name):
         for company in companies:
             company_name, linkedin_link, indeed_link = company
             print(f"Name: {company_name}, LinkedIn: {linkedin_link}, Indeed: {indeed_link}")
-            # Fetch news for each company
             articles = fetch_news_for_company(company_name)
             if articles:
                 print(f"\nArticles for {company_name}:")
