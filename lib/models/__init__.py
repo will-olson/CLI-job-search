@@ -1,7 +1,12 @@
 import sqlite3
 import json
 
-CONN = sqlite3.connect('companies.db')
+class Database:
+    @staticmethod
+    def connect():
+        return sqlite3.connect('companies.db')
+
+CONN = Database.connect()
 CURSOR = CONN.cursor()
 
 CURSOR.execute('''
