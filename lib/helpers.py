@@ -65,6 +65,23 @@ def list_all_companies():
         for company in companies:
             print(f"Name: {company.name}, Category: {company.category}")
 
+def add_new_company():
+    while True:
+        try:
+            id = str(uuid.uuid4())[:8]
+            name = input("Enter Name: ").strip()
+            link = input("Enter LinkedIn URL: ").strip()
+            indeed = input("Enter Indeed URL: ").strip()
+            category = input("Enter Category: ").strip()
+
+            company = Company.create(id, name, link, indeed, False, category)
+            if company:
+                print(f"Company '{company.name}' added successfully.")
+            break
+
+        except ValueError as e:
+            print(f"Error: {e}. Please try again.")
+
 def delete_company():
     company_name = input("Enter the name of the company to delete: ").strip()
     company = Company.find_by_name(company_name)
@@ -122,33 +139,6 @@ def view_favorites(user):
                 print(f"  {article['url']}\n")
         else:
             print(f"No recent articles for {company.name}.")
-
-def add_new_company():
-    while True:
-        try:
-            id = str(uuid.uuid4())[:8]
-            name = input("Enter Name: ").strip()
-            if not name:
-                raise ValueError("Company name cannot be empty.")
-
-            link = input("Enter LinkedIn URL: ").strip()
-            if link and not link.startswith("https://www.linkedin.com/company/"):
-                raise ValueError("Link must start with 'https://www.linkedin.com/company/'.")
-
-            indeed = input("Enter Indeed URL: ").strip()
-            if indeed and not indeed.startswith("https://www.indeed.com/cmp/"):
-                raise ValueError("Indeed link must start with 'https://www.indeed.com/cmp/'.")
-
-            category = input("Enter Category: ").strip()
-            if not category:
-                raise ValueError("Category cannot be empty.")
-
-            company = Company.create(id, name, link, indeed, False, category)
-            print(f"Company '{company.name}' added successfully.")
-            break
-
-        except ValueError as e:
-            print(f"Error: {e}. Please try again.")
 
 def favorite_company(user):
     company_name = input("Enter the name of the company to favorite: ")

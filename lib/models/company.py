@@ -48,6 +48,17 @@ class Company:
 
     @classmethod
     def create(cls, id, name, link, indeed, favorite, category):
+        if cls.find_by_name(name):
+            print(f"Company '{name}' already exists.")
+            return None
+        conn = Database.connect()
+        cursor = conn.cursor()
+        cursor.execute('''
+            INSERT INTO companies (id, name, link, indeed, favorite, category)
+            VALUES (?, ?, ?, ?, ?, ?)
+        ''', (id, name, link, indeed, favorite, category))
+        conn.commit()
+        conn.close()
         return cls(id=id, name=name, link=link, indeed=indeed, favorite=favorite, category=category, validate=True)
 
     @classmethod
@@ -60,26 +71,11 @@ class Company:
         valid_companies = []
         for data in companies:
             try:
-                company = cls(*data, validate=False)  # Skip validation for existing entries
+                company = cls(*data, validate=False)
                 valid_companies.append(company)
             except ValueError as e:
                 print(f"Skipping company due to data error: {e}")
         return valid_companies
-
-    @classmethod
-    def find_by_id(cls, company_id):
-        conn = Database.connect()
-        cursor = conn.cursor()
-        cursor.execute('SELECT * FROM companies WHERE id = ?', (company_id,))
-        company = cursor.fetchone()
-        conn.close()
-        if company:
-            try:
-                return cls(*company, validate=False)  # Skip validation for database retrieval
-            except ValueError as e:
-                print(f"Data error when retrieving company with ID '{company_id}': {e}")
-                return None
-        return None
 
     @classmethod
     def find_by_name(cls, name):
@@ -90,28 +86,11 @@ class Company:
         conn.close()
         if company:
             try:
-                return cls(*company, validate=False)  # Skip validation for database retrieval
+                return cls(*company, validate=False)
             except ValueError as e:
                 print(f"Data error when retrieving company '{name}': {e}")
                 return None
         return None
-
-    def add_favorite(self, user):
-        conn = Database.connect()
-        cursor = conn.cursor()
-        cursor.execute('''
-            INSERT OR IGNORE INTO favorites (user_id, company_id)
-            VALUES (?, ?)
-        ''', (user.id, self.id))
-        conn.commit()
-        conn.close()
-
-    def remove_favorite(self, user):
-        conn = Database.connect()
-        cursor = conn.cursor()
-        cursor.execute('DELETE FROM favorites WHERE user_id = ? AND company_id = ?', (user.id, self.id))
-        conn.commit()
-        conn.close()
 
     def delete(self):
         conn = Database.connect()
