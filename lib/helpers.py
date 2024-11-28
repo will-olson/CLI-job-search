@@ -31,7 +31,6 @@ def get_user():
             print(f"Logged in as {user_dict[choice]}.")
             return User(int(choice), user_dict[choice])
         else:
-            # Treat any non-integer input as a new user name
             return create_new_user(choice)
 
 def create_new_user(name=None):
@@ -68,23 +67,6 @@ def fetch_news_for_company(company_name):
         print(f"Failed to fetch news for {company_name}: {response.status_code}")
         return []
 
-def display_company_news():
-    company_names = get_company_names()
-    for company_name in company_names:
-        print(f"\nArticles for {company_name}:")
-        articles = fetch_news_for_company(company_name)
-        for article in articles[:5]:
-            print(f"- {article['title']} ({article['source']['name']})")
-            print(f"  {article['url']}\n")
-
-def get_company_names():
-    conn = connect_db()
-    cursor = conn.cursor()
-    cursor.execute('SELECT name FROM companies')
-    companies = cursor.fetchall()
-    conn.close()
-    return [company[0] for company in companies]
-
 def list_all_companies():
     conn = connect_db()
     cursor = conn.cursor()
@@ -98,7 +80,31 @@ def list_all_companies():
     for company in company_objects:
         print(f"Name: {company.name}, Category: {company.category}")
 
-def view_categories():
+def view_companies_in_category_and_news(category_name):
+    conn = connect_db()
+    cursor = conn.cursor()
+    cursor.execute('SELECT name, link, indeed FROM companies WHERE category = ?', (category_name,))
+    companies = cursor.fetchall()
+    conn.close()
+
+    if companies:
+        print(f"\nCompanies in '{category_name}':")
+        for company in companies:
+            company_name, linkedin_link, indeed_link = company
+            print(f"Name: {company_name}, LinkedIn: {linkedin_link}, Indeed: {indeed_link}")
+            # Fetch news for each company
+            articles = fetch_news_for_company(company_name)
+            if articles:
+                print(f"\nArticles for {company_name}:")
+                for article in articles[:5]:
+                    print(f"- {article['title']} ({article['source']['name']})")
+                    print(f"  {article['url']}\n")
+            else:
+                print(f"No recent articles for {company_name}.")
+    else:
+        print(f"No companies found in the category '{category_name}'.")
+
+def view_categories_and_news():
     conn = connect_db()
     cursor = conn.cursor()
     cursor.execute('SELECT DISTINCT category FROM companies')
@@ -111,31 +117,16 @@ def view_categories():
     for category in category_objects:
         print(f"- {category.name}")
 
-    category_name = input("Enter a category name to view companies, or press Enter to go back: ").strip()
+    category_name = input("Enter a category name to view companies and news, or press Enter to go back: ").strip()
     if category_name:
-        view_companies_in_category(category_name)
-
-def view_companies_in_category(category_name):
-    conn = connect_db()
-    cursor = conn.cursor()
-    cursor.execute('SELECT * FROM companies WHERE category = ?', (category_name,))
-    companies = cursor.fetchall()
-    conn.close()
-
-    if companies:
-        print(f"\nCompanies in '{category_name}':")
-        for company in companies:
-            print(f"Name: {company[1]}, LinkedIn: {company[2]}, Indeed: {company[3]}")
-    else:
-        print(f"No companies found in the category '{category_name}'.")
+        view_companies_in_category_and_news(category_name)
 
 def view_favorites(user):
     conn = connect_db()
     cursor = conn.cursor()
     cursor.execute('''
-    SELECT users.name AS user_name, companies.name AS company_name, companies.link AS linkedin_link, companies.indeed AS indeed_link
+    SELECT companies.name, companies.link, companies.indeed
     FROM favorites
-    JOIN users ON favorites.user_id = users.id
     JOIN companies ON favorites.company_id = companies.id
     WHERE favorites.user_id = ?
     ''', (user.id,))
@@ -143,7 +134,7 @@ def view_favorites(user):
 
     # Fetch all favorites across users
     cursor.execute('''
-    SELECT users.name AS user_name, companies.name AS company_name, companies.link AS linkedin_link, companies.indeed AS indeed_link
+    SELECT users.name AS user_name, companies.name, companies.link, companies.indeed
     FROM favorites
     JOIN users ON favorites.user_id = users.id
     JOIN companies ON favorites.company_id = companies.id
@@ -153,11 +144,22 @@ def view_favorites(user):
 
     print(f"\nFavorite Companies for {user.name}:")
     for favorite in user_favorites:
-        print(f"Company: {favorite[1]}, LinkedIn: {favorite[2]}, Indeed: {favorite[3]}")
+        company_name, linkedin_link, indeed_link = favorite
+        print(f"Company: {company_name}, LinkedIn: {linkedin_link}, Indeed: {indeed_link}")
+        # Fetch news for each favorite company
+        articles = fetch_news_for_company(company_name)
+        if articles:
+            print(f"\nArticles for {company_name}:")
+            for article in articles[:5]:
+                print(f"- {article['title']} ({article['source']['name']})")
+                print(f"  {article['url']}\n")
+        else:
+            print(f"No recent articles for {company_name}.")
 
     print("\nAll Favorited Companies Across Users:")
     for favorite in all_favorites:
-        print(f"User: {favorite[0]}, Company: {favorite[1]}, LinkedIn: {favorite[2]}, Indeed: {favorite[3]}")
+        user_name, company_name, linkedin_link, indeed_link = favorite
+        print(f"User: {user_name}, Company: {company_name}, LinkedIn: {linkedin_link}, Indeed: {indeed_link}")
 
 def add_new_company():
     conn = connect_db()
