@@ -68,18 +68,37 @@ def list_all_companies():
             print(f"Name: {company.name}, Category: {company.category}")
 
 def add_new_company():
+    print("Enter 'exit' at any prompt to return to the main menu.")
     while True:
         try:
             id = str(uuid.uuid4())[:8]
             name = input("Enter Name: ").strip()
+            if name.lower() == 'exit':
+                print("Returning to the main menu.")
+                return
+
             link = input("Enter LinkedIn URL: ").strip()
+            if link.lower() == 'exit':
+                print("Returning to the main menu.")
+                return
+
             indeed = input("Enter Indeed URL: ").strip()
+            if indeed.lower() == 'exit':
+                print("Returning to the main menu.")
+                return
+
             category = input("Enter Category: ").strip()
+            if category.lower() == 'exit':
+                print("Returning to the main menu.")
+                return
 
             company = Company.create(id, name, link, indeed, False, category)
             if company:
                 print(f"Company '{company.name}' added successfully.")
-            break
+            else:
+                print(f"Failed to add company. It may already exist.")
+
+            return
 
         except ValueError as e:
             print(f"Error: {e}. Please try again.")
