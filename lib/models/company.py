@@ -91,6 +91,23 @@ class Company:
                 print(f"Data error when retrieving company '{name}': {e}")
                 return None
         return None
+    
+    def add_favorite(self, user):
+        conn = Database.connect()
+        cursor = conn.cursor()
+        cursor.execute('''
+            INSERT OR IGNORE INTO favorites (user_id, company_id)
+            VALUES (?, ?)
+        ''', (user.id, self.id))
+        conn.commit()
+        conn.close()
+
+    def remove_favorite(self, user):
+        conn = Database.connect()
+        cursor = conn.cursor()
+        cursor.execute('DELETE FROM favorites WHERE user_id = ? AND company_id = ?', (user.id, self.id))
+        conn.commit()
+        conn.close()
 
     def delete(self):
         conn = Database.connect()

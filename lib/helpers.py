@@ -162,7 +162,7 @@ def view_favorites(user):
             print(f"No recent articles for {company.name}.")
 
 def favorite_company(user):
-    company_name = input("Enter the name of the company to favorite: ")
+    company_name = input("Enter the name of the company to favorite: ").strip()
     company = Company.find_by_name(company_name)
 
     if company:
