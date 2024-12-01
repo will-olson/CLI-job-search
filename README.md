@@ -27,35 +27,47 @@
 Follow these steps to install and set up the application:
 
 ### I. Clone the Repository:
+```python
 bash
 git clone <repository-url>
 cd <repository-directory>
+```
 
 ### II. Set Up the Environment:
 Ensure you have Pipenv installed. If not, install it via pip:
+```python
 bash
 pip install pipenv
+```
 
 ### III. Install Dependencies:
 Use Pipenv to install the required packages as specified in the Pipfile:
+```python
 bash
 pipenv install
+```
 
 ### IV. Activate the Virtual Environment:
 Activate the Pipenv virtual environment:
+```python
 bash
 pipenv shell
+```
 
 ### V. Running the Application
 Navigate to the lib Directory:
 Ensure you're in the lib directory where cli.py resides:
+```python
 bash
 cd lib
+```
 
 ### VI. Launch the CLI Application:
 Run the application using the python command:
+```python
 bash
 python cli.py
+```
 
 ### VII. Directory Structure
 Here's a quick overview of the key directories and files:
@@ -80,7 +92,7 @@ Here's a quick overview of the key directories and files:
 
 - Add a New Company: Select the option to add a company, then provide details such as name, LinkedIn URL, Indeed URL, and category. Note that the Linkedin and Indeed links must follow a key format.
 
-- View All Companies:Choose the option to list all companies and view their details.
+- View All Companies: Choose the option to list all companies and view their details.
 
 - Favorite a Company: Select a 'Favorite a company' from the main and enter its name. This will only favorite the company for the current user. 
 
