@@ -3,9 +3,6 @@ from . import Database
 class Company:
     def __init__(self, id, name, link=None, indeed=None, favorite=False, category=None, validate=True):
         self.id = id
-        self._name = None
-        self._link = None
-        self._indeed = None
         self.favorite = favorite
         self.category = category
         self.name = name
@@ -49,9 +46,16 @@ class Company:
 
     @classmethod
     def create(cls, id, name, link, indeed, favorite, category):
+        try:
+            temp_company = cls(id=id, name=name, link=link, indeed=indeed, favorite=favorite, category=category, validate=True)
+        except ValueError as e:
+            print(f"Validation error: {e}")
+            return None
+
         if cls.find_by_name(name):
             print(f"Company '{name}' already exists.")
             return None
+
         conn = Database.connect()
         cursor = conn.cursor()
         cursor.execute('''
@@ -60,6 +64,7 @@ class Company:
         ''', (id, name, link, indeed, favorite, category))
         conn.commit()
         conn.close()
+
         return cls(id=id, name=name, link=link, indeed=indeed, favorite=favorite, category=category, validate=True)
 
     @classmethod
