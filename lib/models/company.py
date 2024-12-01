@@ -10,12 +10,10 @@ class Company:
         self.category = category
         self.name = name
 
-        # Perform validation for new companies
         if validate:
             self.link = link
             self.indeed = indeed
         else:
-            # Bypass validation for existing companies
             self._link = link
             self._indeed = indeed
 
@@ -74,7 +72,7 @@ class Company:
         valid_companies = []
         for data in companies:
             try:
-                company = cls(*data, validate=False)  # Bypass validation for existing data
+                company = cls(*data, validate=False)
                 valid_companies.append(company)
             except ValueError as e:
                 print(f"Skipping company due to data error: {e}")
@@ -89,7 +87,7 @@ class Company:
         conn.close()
         if company:
             try:
-                return cls(*company, validate=False)  # Bypass validation for existing data
+                return cls(*company, validate=False)
             except ValueError as e:
                 print(f"Data error when retrieving company '{name}': {e}")
                 return None
@@ -104,7 +102,7 @@ class Company:
         conn.close()
         if company:
             try:
-                return cls(*company, validate=False)  # Bypass validation for existing data
+                return cls(*company, validate=False)
             except ValueError as e:
                 print(f"Data error when retrieving company with ID '{company_id}': {e}")
                 return None

@@ -20,4 +20,4 @@ class Category:
         cursor.execute('SELECT * FROM companies WHERE category = ?', (self.name,))
         companies = cursor.fetchall()
         conn.close()
-        return [Company(*company, validate=False) for company in companies]  # Bypass validation
+        return [Company(*company, validate=False) for company in companies]
