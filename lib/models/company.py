@@ -6,15 +6,18 @@ class Company:
         self._name = None
         self._link = None
         self._indeed = None
+        self.favorite = favorite
+        self.category = category
         self.name = name
+
+        # Perform validation for new companies
         if validate:
             self.link = link
             self.indeed = indeed
         else:
+            # Bypass validation for existing companies
             self._link = link
             self._indeed = indeed
-        self.favorite = favorite
-        self.category = category
 
     @property
     def name(self):
@@ -71,7 +74,7 @@ class Company:
         valid_companies = []
         for data in companies:
             try:
-                company = cls(*data, validate=False)
+                company = cls(*data, validate=False)  # Bypass validation for existing data
                 valid_companies.append(company)
             except ValueError as e:
                 print(f"Skipping company due to data error: {e}")
@@ -86,12 +89,27 @@ class Company:
         conn.close()
         if company:
             try:
-                return cls(*company, validate=False)
+                return cls(*company, validate=False)  # Bypass validation for existing data
             except ValueError as e:
                 print(f"Data error when retrieving company '{name}': {e}")
                 return None
         return None
-    
+
+    @classmethod
+    def find_by_id(cls, company_id):
+        conn = Database.connect()
+        cursor = conn.cursor()
+        cursor.execute('SELECT * FROM companies WHERE id = ?', (company_id,))
+        company = cursor.fetchone()
+        conn.close()
+        if company:
+            try:
+                return cls(*company, validate=False)  # Bypass validation for existing data
+            except ValueError as e:
+                print(f"Data error when retrieving company with ID '{company_id}': {e}")
+                return None
+        return None
+
     def add_favorite(self, user):
         conn = Database.connect()
         cursor = conn.cursor()
