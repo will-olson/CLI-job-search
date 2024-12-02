@@ -1,0 +1,23 @@
+Table users {
+  id integer [primary key]
+  name text [unique, not null]
+}
+
+Table favorites {
+  id integer [primary key]
+  user_id integer [ref: > users.id]
+  company_id integer [ref: > companies.id]
+}
+
+Table companies {
+  id integer [primary key]
+  name text [not null]
+  link text
+  indeed text
+  favorite boolean
+  category_id text [ref: > categories.name]
+}
+
+Table categories {
+  name text [unique, not null]
+}
