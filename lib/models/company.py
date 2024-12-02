@@ -45,9 +45,9 @@ class Company:
         self._indeed = value
 
     @classmethod
-    def create(cls, id, name, link, indeed, favorite, category):
+    def create(cls, name, link, indeed, favorite, category):
         try:
-            temp_company = cls(id=id, name=name, link=link, indeed=indeed, favorite=favorite, category=category, validate=True)
+            temp_company = cls(id=None, name=name, link=link, indeed=indeed, favorite=favorite, category=category, validate=True)
         except ValueError as e:
             print(f"Validation error: {e}")
             return None
@@ -59,13 +59,13 @@ class Company:
         conn = Database.connect()
         cursor = conn.cursor()
         cursor.execute('''
-            INSERT INTO companies (id, name, link, indeed, favorite, category)
-            VALUES (?, ?, ?, ?, ?, ?)
-        ''', (id, name, link, indeed, favorite, category))
+            INSERT INTO companies (name, link, indeed, favorite, category)
+            VALUES (?, ?, ?, ?, ?)
+        ''', (name, link, indeed, favorite, category))
         conn.commit()
         conn.close()
 
-        return cls(id=id, name=name, link=link, indeed=indeed, favorite=favorite, category=category, validate=True)
+        return cls(id=cursor.lastrowid, name=name, link=link, indeed=indeed, favorite=favorite, category=category, validate=True)
 
     @classmethod
     def get_all(cls):

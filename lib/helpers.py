@@ -1,4 +1,3 @@
-import uuid
 from models.company import Company
 from models.category import Category
 from models.user import User
@@ -62,7 +61,6 @@ def add_new_company():
     print("Enter 'exit' at any prompt to return to the main menu.")
     while True:
         try:
-            id = str(uuid.uuid4())[:8]
             name = input("Enter Name: ").strip()
             if name.lower() == 'exit':
                 return print("Returning to the main menu.")
@@ -79,7 +77,7 @@ def add_new_company():
             if category.lower() == 'exit':
                 return print("Returning to the main menu.")
 
-            if Company.create(id, name, link, indeed, False, category):
+            if Company.create(name, link, indeed, False, category):
                 print(f"Company '{name}' added successfully.")
             else:
                 print(f"Failed to add company. It may already exist.")

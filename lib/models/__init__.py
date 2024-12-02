@@ -27,10 +27,9 @@ def insert_data(data):
     for category, companies in data.items():
         for company in companies:
             CURSOR.execute('''
-            INSERT OR IGNORE INTO companies (id, name, link, indeed, favorite, category)
-            VALUES (?, ?, ?, ?, ?, ?)
+            INSERT OR IGNORE INTO companies (name, link, indeed, favorite, category)
+            VALUES (?, ?, ?, ?, ?)
             ''', (
-                company.get('id'),
                 company.get('name'),
                 company.get('link'),
                 company.get('indeed'),
@@ -38,40 +37,43 @@ def insert_data(data):
                 company.get('category', category)
             ))
 
-CONN = Database.connect()
-CURSOR = CONN.cursor()
+def initialize_database():
+    CONN = Database.connect()
+    CURSOR = CONN.cursor()
 
-CURSOR.execute('''
-CREATE TABLE IF NOT EXISTS companies (
-    id TEXT PRIMARY KEY,
-    name TEXT NOT NULL,
-    link TEXT,
-    indeed TEXT,
-    favorite BOOLEAN,
-    category TEXT
-)
-''')
+    CURSOR.execute('''
+    CREATE TABLE IF NOT EXISTS companies (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        link TEXT,
+        indeed TEXT,
+        favorite BOOLEAN,
+        category TEXT
+    )
+    ''')
 
-CURSOR.execute('''
-CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT UNIQUE NOT NULL
-)
-''')
+    CURSOR.execute('''
+    CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT UNIQUE NOT NULL
+    )
+    ''')
 
-CURSOR.execute('''
-CREATE TABLE IF NOT EXISTS favorites (
-    user_id INTEGER,
-    company_id TEXT,
-    FOREIGN KEY(user_id) REFERENCES users(id),
-    FOREIGN KEY(company_id) REFERENCES companies(id),
-    PRIMARY KEY (user_id, company_id)
-)
-''')
+    CURSOR.execute('''
+    CREATE TABLE IF NOT EXISTS favorites (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER,
+        company_id INTEGER,
+        FOREIGN KEY(user_id) REFERENCES users(id),
+        FOREIGN KEY(company_id) REFERENCES companies(id)
+    )
+    ''')
 
-if not is_database_initialized():
-    data = load_data_from_json()
-    insert_data(data)
+    if not is_database_initialized():
+        data = load_data_from_json()
+        insert_data(data)
 
-CONN.commit()
-CONN.close()
+    CONN.commit()
+    CONN.close()
+
+initialize_database()
