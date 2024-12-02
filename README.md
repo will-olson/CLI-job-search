@@ -99,3 +99,7 @@ Here's a quick overview of the key directories and files:
 - View favorites: This will option (3) on the menu will show all companies favorited for a given user along with the corresponding Linkedin & Indeed links and 5 recent news articles per company.
 
 - Explore Categories: View available categories and select one to explore companies and related news.
+
+### VI. Additional references
+
+- For additional reference and utility, raw SQL, JSON, and CSV versions of the database can be found in the 'companiesFiles' directory. Visualizations and dbml code for the tables can be found in the 'programVisualization' directory.
