@@ -1,6 +1,7 @@
 from models.company import Company
 from models.category import Category
 from models.user import User
+from models.favorites import Favorites
 import requests
 import time
 
@@ -123,8 +124,24 @@ def view_categories_and_news():
     if category_name:
         view_companies_in_category_and_news(category_name)
 
+def favorite_company(user):
+    company_name = input("Enter the name of the company to favorite: ").strip()
+    if company := Company.find_by_name(company_name):
+        Favorites.add_favorite(user.id, company.id)
+        print(f"Company '{company_name}' marked as favorite for {user.name}.")
+    else:
+        print(f"Company '{company_name}' not found.")
+
+def unfavorite_company(user):
+    company_name = input("Enter the name of the company to unfavorite: ").strip()
+    if company := Company.find_by_name(company_name):
+        Favorites.remove_favorite(user.id, company.id)
+        print(f"Company '{company_name}' unfavorited for {user.name}.")
+    else:
+        print(f"Company '{company_name}' is not in your favorites.")
+
 def view_favorites(user):
-    favorites = user.get_favorites()
+    favorites = Favorites.get_user_favorites(user.id)
     print(f"\nFavorite Companies for {user.name}:")
     for company in favorites:
         print(f"Company: {company.name}, LinkedIn: {company.link}, Indeed: {company.indeed}")
@@ -135,22 +152,6 @@ def view_favorites(user):
                 print(f"  {article['url']}\n")
         else:
             print(f"No recent articles for {company.name}.")
-
-def favorite_company(user):
-    company_name = input("Enter the name of the company to favorite: ").strip()
-    if company := Company.find_by_name(company_name):
-        company.add_favorite(user)
-        print(f"Company '{company_name}' marked as favorite for {user.name}.")
-    else:
-        print(f"Company '{company_name}' not found.")
-
-def unfavorite_company(user):
-    company_name = input("Enter the name of the company to unfavorite: ").strip()
-    if company := Company.find_by_name(company_name):
-        company.remove_favorite(user)
-        print(f"Company '{company_name}' unfavorited for {user.name}.")
-    else:
-        print(f"Company '{company_name}' is not in your favorites.")
 
 def delete_user(current_user):
     user_name = input("Enter the name of the user to delete: ").strip()

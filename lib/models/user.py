@@ -74,16 +74,3 @@ class User:
             return True
         print(f"User '{self.name}' deletion cancelled.")
         return False
-
-    def get_favorites(self):
-        conn = Database.connect()
-        cursor = conn.cursor()
-        cursor.execute('''
-            SELECT companies.id, companies.name, companies.link, companies.indeed, companies.favorite, companies.category
-            FROM favorites
-            JOIN companies ON favorites.company_id = companies.id
-            WHERE favorites.user_id = ?
-        ''', (self.id,))
-        favorites = cursor.fetchall()
-        conn.close()
-        return [Company(*company) for company in favorites]
