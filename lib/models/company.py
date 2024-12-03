@@ -1,4 +1,4 @@
-from . import Database
+from models.database import Database
 
 class Company:
     def __init__(self, id, name, link=None, indeed=None, favorite=False, category=None, validate=True):

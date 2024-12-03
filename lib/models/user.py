@@ -1,4 +1,4 @@
-from . import Database
+from models.database import Database
 from .company import Company
 import sqlite3
 
