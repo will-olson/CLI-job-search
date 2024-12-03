@@ -81,7 +81,7 @@ Here's a quick overview of the key directories and files:
     ├── helpers.py          # Helper functions for CLI operations
     ├── db.json             # JSON file with initial data
     ├── models/
-    │   ├── __init__.py     # Database initialization and setup
+    │   ├── database.py     # Database initialization and setup
     │   ├── category.py     # Category model and logic
     │   ├── company.py      # Company model and logic
     │   └── user.py         # User model and logic
