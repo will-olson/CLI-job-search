@@ -84,6 +84,7 @@ Here's a quick overview of the key directories and files:
     │   ├── database.py     # Database initialization and setup
     │   ├── category.py     # Category model and logic
     │   ├── company.py      # Company model and logic
+    │   ├── favorites.py    # Favorites model and logic
     │   └── user.py         # User model and logic
 ```
 
