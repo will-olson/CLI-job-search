@@ -1,10 +1,11 @@
 from models.database import Database
+from models.category import Category
 
 class Company:
-    def __init__(self, id, name, link=None, indeed=None, favorite=False, category=None, validate=True):
+    def __init__(self, id, name, link=None, indeed=None, favorite=False, category_id=None, validate=True):
         self.id = id
         self.favorite = favorite
-        self.category = category
+        self.category_id = category_id
         self.name = name
 
         if validate:
@@ -45,9 +46,10 @@ class Company:
         self._indeed = value
 
     @classmethod
-    def create(cls, name, link, indeed, favorite, category):
+    def create(cls, name, link, indeed, favorite, category_name):
         try:
-            temp_company = cls(id=None, name=name, link=link, indeed=indeed, favorite=favorite, category=category, validate=True)
+            category_id = Category.get_or_create(category_name)
+            temp_company = cls(id=None, name=name, link=link, indeed=indeed, favorite=favorite, category_id=category_id, validate=True)
         except ValueError as e:
             print(f"Validation error: {e}")
             return None
@@ -59,19 +61,19 @@ class Company:
         conn = Database.connect()
         cursor = conn.cursor()
         cursor.execute('''
-            INSERT INTO companies (name, link, indeed, favorite, category)
+            INSERT INTO companies (name, link, indeed, favorite, category_id)
             VALUES (?, ?, ?, ?, ?)
-        ''', (name, link, indeed, favorite, category))
+        ''', (name, link, indeed, favorite, category_id))
         conn.commit()
         conn.close()
 
-        return cls(id=cursor.lastrowid, name=name, link=link, indeed=indeed, favorite=favorite, category=category, validate=True)
+        return cls(id=cursor.lastrowid, name=name, link=link, indeed=indeed, favorite=favorite, category_id=category_id, validate=True)
 
     @classmethod
     def get_all(cls):
         conn = Database.connect()
         cursor = conn.cursor()
-        cursor.execute('SELECT * FROM companies')
+        cursor.execute('SELECT id, name, link, indeed, favorite, category_id FROM companies')
         companies = cursor.fetchall()
         conn.close()
         valid_companies = []
@@ -87,7 +89,7 @@ class Company:
     def find_by_name(cls, name):
         conn = Database.connect()
         cursor = conn.cursor()
-        cursor.execute('SELECT * FROM companies WHERE name = ?', (name,))
+        cursor.execute('SELECT id, name, link, indeed, favorite, category_id FROM companies WHERE name = ?', (name,))
         company = cursor.fetchone()
         conn.close()
         if company:
@@ -102,7 +104,7 @@ class Company:
     def find_by_id(cls, company_id):
         conn = Database.connect()
         cursor = conn.cursor()
-        cursor.execute('SELECT * FROM companies WHERE id = ?', (company_id,))
+        cursor.execute('SELECT id, name, link, indeed, favorite, category_id FROM companies WHERE id = ?', (company_id,))
         company = cursor.fetchone()
         conn.close()
         if company:

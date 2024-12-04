@@ -1,3 +1,4 @@
+from models.database import Database
 from models.company import Company
 from models.category import Category
 from models.user import User
@@ -54,7 +55,8 @@ def list_all_companies():
     if companies:
         print("\nAll Companies:")
         for company in companies:
-            print(f"Name: {company.name}, Category: {company.category}")
+            category_name = Category.get_name_by_id(company.category_id)
+            print(f"Name: {company.name}, Category: {category_name}")
     else:
         print("\nNo companies available.")
 
@@ -74,11 +76,11 @@ def add_new_company():
             if indeed.lower() == 'exit':
                 return print("Returning to the main menu.")
 
-            category = input("Enter Category: ").strip()
-            if category.lower() == 'exit':
+            category_name = input("Enter Category: ").strip()
+            if category_name.lower() == 'exit':
                 return print("Returning to the main menu.")
 
-            if Company.create(name, link, indeed, False, category):
+            if Company.create(name, link, indeed, False, category_name):
                 print(f"Company '{name}' added successfully.")
             else:
                 print(f"Failed to add company. It may already exist.")
@@ -99,20 +101,32 @@ def delete_company():
         print(f"Company '{company_name}' not found or data error.")
 
 def view_companies_in_category_and_news(category_name):
-    companies = Category(category_name).get_companies()
-    if companies:
-        print(f"\nCompanies in '{category_name}':")
-        for company in companies:
-            print(f"Name: {company.name}, LinkedIn: {company.link}, Indeed: {company.indeed}")
-            if articles := fetch_news_for_company(company.name):
-                print(f"\nArticles for {company.name}:")
-                for article in articles[:5]:
-                    print(f"- {article['title']} ({article['source']['name']})")
-                    print(f"  {article['url']}\n")
-            else:
-                print(f"No recent articles for {company.name}.")
+    conn = Database.connect()
+    cursor = conn.cursor()
+    cursor.execute('SELECT id FROM categories WHERE name = ?', (category_name,))
+    category_data = cursor.fetchone()
+    conn.close()
+
+    if category_data:
+        category_id = category_data[0]
+        category = Category(id=category_id, name=category_name)
+        companies = category.get_companies()
+
+        if companies:
+            print(f"\nCompanies in '{category_name}':")
+            for company in companies:
+                print(f"Name: {company.name}, LinkedIn: {company.link}, Indeed: {company.indeed}")
+                if articles := fetch_news_for_company(company.name):
+                    print(f"\nArticles for {company.name}:")
+                    for article in articles[:5]:
+                        print(f"- {article['title']} ({article['source']['name']})")
+                        print(f"  {article['url']}\n")
+                else:
+                    print(f"No recent articles for {company.name}.")
+        else:
+            print(f"No companies found in the category '{category_name}'.")
     else:
-        print(f"No companies found in the category '{category_name}'.")
+        print(f"Category '{category_name}' not found.")
 
 def view_categories_and_news():
     categories = Category.get_all()

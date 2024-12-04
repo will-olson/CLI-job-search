@@ -15,9 +15,10 @@ Table companies {
   link text
   indeed text
   favorite boolean
-  category_id text [ref: > categories.name]
+  category_id text [ref: > categories.id]
 }
 
 Table categories {
+  id integer [primary key]
   name text [unique, not null]
 }
